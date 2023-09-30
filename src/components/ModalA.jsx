@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import BangladeshFlag from '../images/Bangladesh.jpg';
-import USAFlag from '../images/USA.png';
 import AbkhaziaFlag from '../images/Abkhazia.jpeg';
 import './Problem-2.css';
 import { Link } from 'react-router-dom';
