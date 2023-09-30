@@ -11,9 +11,11 @@ import { Link, NavLink } from 'react-router-dom';
 
 
 
-
-
 const Problem2 = () => {
+
+
+
+
 
 
 
@@ -42,18 +44,38 @@ const Problem2 = () => {
 
 
 
+
+
+
     const [checked, setChecked] = useState(false);
     const [filterData, setFilterData] = useState([])
     const handleCheckBoxClicked = () => {
-
+        setChecked((prevChecked) => !prevChecked);
+        if (checked === true) {
+            const newFilter = allContacts?.length > 0 && allContacts.filter(data => data.country.id === 2 || data.country.id === 4 || data.country.id === 6 || data.country.id === 8 || data.country.id === 10 || data.country.id === 12 || data.country.id === 14 || data.country.id === 16 || data.country.id === 18 || data.country.id === 20 || data.country.id === 22 || data.country.id === 24 || data.country.id === 26 || data.country.id === 28 || data.country.id === 30)
+            setFilterData(newFilter);
+        }
+        else {
+            // toast.error("Not Checked")
+            console.log("Not Checked");
+        }
     }
 
 
 
-
-    const [modalCData, setModalCData] = useState(null);
+    const [modalCData, setModalCData] = useState(null)
     const handleOpenModalC = (data) => {
+        console.log("Data: ", data);
+        setModalCData(data);
+        setModalShowC(true);
     }
+
+
+
+
+
+
+
 
 
 
@@ -211,6 +233,9 @@ const Problem2 = () => {
 
 
 
+
+    
+
     function MyVerticallyCenteredModalC(props) {
         return (
             <Modal
@@ -264,6 +289,16 @@ const Problem2 = () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
     return (
 
         <div>
@@ -273,8 +308,8 @@ const Problem2 = () => {
 
                     <div className="d-flex justify-content-center gap-3">
 
-                        <Link to='/problem-2/modalA' onClick={handleAllContactsClick}>
-                            <button className="customA" type="button">All Contacts</button>
+                        <Link to='/problem-2/modalA'  onClick={handleAllContactsClick}>
+                            <button  className="customA" type="button">All Contacts</button>
                         </Link>
 
                         <Link to='/problem-2/modalB'>
@@ -285,6 +320,9 @@ const Problem2 = () => {
 
                 </div>
             </div>
+
+
+
 
 
             <MyVerticallyCenteredModal
@@ -302,6 +340,21 @@ const Problem2 = () => {
                 show={modalShowC}
                 onHide={() => setModalShowC(false)}
             />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
