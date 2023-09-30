@@ -17,6 +17,24 @@ const Problem2 = () => {
 
 
 
+    const [allContacts, setAllContacts] = useState([])
+    const handleAllContactsClick = () => {
+        setModalShow(true);
+        setModalShow1(false);
+        setModalShowC(false);
+        fetch('https://contact.mediusware.com/api/contacts/')
+            .then(res => res.json())
+            .then(data => setAllContacts(data.results))
+        setChecked(false);
+    }
+
+
+
+
+
+
+
+
     const [modalShow, setModalShow] = useState(false);
     const [modalShow1, setModalShow1] = useState(false);
     const [modalShowC, setModalShowC] = useState(false);
@@ -166,6 +184,52 @@ const Problem2 = () => {
 
 
 
+
+
+
+
+    function MyVerticallyCenteredModalC(props) {
+        return (
+            <Modal
+                {...props}
+                size="md"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        <p >Modal C</p>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+                    <div>
+                        <p><span className='fw-bold'>Country Name:</span> {modalCData?.country.name}</p>
+                        <p><span className='fw-bold'>Country ID:</span> {modalCData?.country.id}</p>
+                        <p><span className='fw-bold'>Phone Number:</span> {modalCData?.phone}</p>
+                        {
+                            modalCData?.country.name === 'Bangladesh' &&
+                            <div>
+                                <img className='flag-width mx-auto' src={BangladeshFlag} alt="Flag" />
+                            </div>
+                        }
+
+                        {
+                            modalCData?.country.name === 'United States' &&
+                            <div>
+                                <img className='flag-width mx-auto' src={USAFlag} alt="Flag" />
+                            </div>
+                        }
+
+                    </div>
+
+                </Modal.Body>
+
+
+
+            </Modal>
+        );
+    }
 
 
 
