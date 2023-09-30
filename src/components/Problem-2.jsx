@@ -30,7 +30,30 @@ const Problem2 = () => {
 
 
 
+    const [USContacts, setUSContacts] = useState([])
+    const handleUSContactsClick = () => {
+        setModalShow1(true);
+        setModalShow(false);
+        setModalShowC(false);
+        fetch('https://contact.mediusware.com/api/country-contacts/United States/')
+            .then(res => res.json())
+            .then(data => setUSContacts(data.results))
+    }
 
+
+
+    const [checked, setChecked] = useState(false);
+    const [filterData, setFilterData] = useState([])
+    const handleCheckBoxClicked = () => {
+
+    }
+
+
+
+
+    const [modalCData, setModalCData] = useState(null);
+    const handleOpenModalC = (data) => {
+    }
 
 
 
