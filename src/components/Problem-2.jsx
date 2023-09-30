@@ -127,6 +127,44 @@ const Problem2 = () => {
 
 
 
+    function MyVerticallyCenteredModal1(props) {
+        return (
+            <Modal
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        <p >Modal B</p>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+
+                    {
+                        USContacts?.map((data, index) => (
+                            <div onClick={() => handleOpenModalC(data)} className='d-flex  gap-3 bg-color-on-hover' key={index}>
+                                <p className=''>⦿ <span className='fw-bold'>Country:</span> <span className='fw-bold text-primary'>{data?.country.name}</span></p>
+                                <p>⦿ <span className='fw-bold'>Phone:</span> <span className='fw-bold text-primary'>{data?.phone}</span></p>
+                            </div>
+                        ))
+                    }
+
+
+                    <div className="d-flex justify-content-center mt-5 gap-3 mb-5">
+                        <button className="btn btn-lg btn-outline-primary" type="button" onClick={handleAllContactsClick}>All Contacts</button>
+                        <button className="btn btn-lg btn-outline-success" type="button" >US Contacts</button>
+                        <button className="btn btn-lg btn-danger" type="button" onClick={props.onHide} >Close</button>
+                    </div>
+                </Modal.Body>
+            </Modal>
+        );
+    }
+
+
+
 
 
 
@@ -165,6 +203,17 @@ const Problem2 = () => {
             <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
+            />
+
+
+            <MyVerticallyCenteredModal1
+                show={modalShow1}
+                onHide={() => setModalShow1(false)}
+            />
+
+            <MyVerticallyCenteredModalC
+                show={modalShowC}
+                onHide={() => setModalShowC(false)}
             />
 
 
