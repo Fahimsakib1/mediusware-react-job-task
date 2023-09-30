@@ -11,13 +11,13 @@ import { Link, NavLink } from 'react-router-dom';
 
 
 
+
+
+
+
+
+
 const Problem2 = () => {
-
-
-
-
-
-
 
     const [allContacts, setAllContacts] = useState([])
     const handleAllContactsClick = () => {
@@ -31,7 +31,6 @@ const Problem2 = () => {
     }
 
 
-
     const [USContacts, setUSContacts] = useState([])
     const handleUSContactsClick = () => {
         setModalShow1(true);
@@ -41,10 +40,6 @@ const Problem2 = () => {
             .then(res => res.json())
             .then(data => setUSContacts(data.results))
     }
-
-
-
-
 
 
     const [checked, setChecked] = useState(false);
@@ -57,27 +52,15 @@ const Problem2 = () => {
         }
         else {
             // toast.error("Not Checked")
-            console.log("Not Checked");
+            console.log("Not yet checked");
         }
     }
 
-
-
     const [modalCData, setModalCData] = useState(null)
     const handleOpenModalC = (data) => {
-        console.log("Data: ", data);
         setModalCData(data);
         setModalShowC(true);
     }
-
-
-
-
-
-
-
-
-
 
 
     const [modalShow, setModalShow] = useState(false);
@@ -147,12 +130,7 @@ const Problem2 = () => {
                                 }
 
                             </>
-
-
-
-
                     }
-
                     <div className="d-flex justify-content-center mt-5 gap-3">
                         <button className="btn btn-lg btn-outline-primary" type="button">All Contacts</button>
                         <button className="btn btn-lg btn-outline-success" type="button" onClick={handleUSContactsClick}>US Contacts</button>
@@ -179,7 +157,6 @@ const Problem2 = () => {
                         </div>
                     </div>
                 </div>
-
             </Modal>
         );
     }
@@ -204,8 +181,6 @@ const Problem2 = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-
-
                     {
                         USContacts?.map((data, index) => (
                             <div onClick={() => handleOpenModalC(data)} className='d-flex  gap-3 bg-color-on-hover' key={index}>
@@ -214,7 +189,6 @@ const Problem2 = () => {
                             </div>
                         ))
                     }
-
 
                     <div className="d-flex justify-content-center mt-5 gap-3 mb-5">
                         <button className="btn btn-lg btn-outline-primary" type="button" onClick={handleAllContactsClick}>All Contacts</button>
@@ -227,14 +201,6 @@ const Problem2 = () => {
     }
 
 
-
-
-
-
-
-
-
-    
 
     function MyVerticallyCenteredModalC(props) {
         return (
@@ -250,7 +216,6 @@ const Problem2 = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-
                     <div>
                         <p><span className='fw-bold'>Country Name:</span> {modalCData?.country.name}</p>
                         <p><span className='fw-bold'>Country ID:</span> {modalCData?.country.id}</p>
@@ -268,35 +233,11 @@ const Problem2 = () => {
                                 <img className='flag-width mx-auto' src={USAFlag} alt="Flag" />
                             </div>
                         }
-
                     </div>
-
                 </Modal.Body>
-
-
-
             </Modal>
         );
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     return (
@@ -305,31 +246,21 @@ const Problem2 = () => {
             <div className="container">
                 <div className="row justify-content-center mt-5">
                     <h4 className='text-center text-uppercase mb-5'>Problem-2</h4>
-
                     <div className="d-flex justify-content-center gap-3">
-
                         <Link to='/problem-2/modalA'  onClick={handleAllContactsClick}>
                             <button  className="customA" type="button">All Contacts</button>
                         </Link>
-
                         <Link to='/problem-2/modalB'>
                             <button className="customB" type="button" onClick={handleUSContactsClick}>US Contacts</button>
                         </Link>
-
                     </div>
-
                 </div>
             </div>
-
-
-
-
 
             <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
             />
-
 
             <MyVerticallyCenteredModal1
                 show={modalShow1}
@@ -340,28 +271,6 @@ const Problem2 = () => {
                 show={modalShowC}
                 onHide={() => setModalShowC(false)}
             />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         </div>
     );

@@ -27,11 +27,10 @@ const Problem1 = () => {
         });
     };
 
-
     const handleProblem1Submit = (event) => {
         event.preventDefault();
         if (formData.name === '' || formData.status === '') {
-            return toast.error("You can not submit empty value")
+            return toast.error("Can't submit empty value")
         }
         setArrayInfo([...arrayInfo, formData]);
         setName(formData?.name)
@@ -43,32 +42,14 @@ const Problem1 = () => {
 
     };
 
-
-
-    // const handleClick = (val) => {
-    //     setShow(val);
-    // }
-
-
-
     const [allClick, setAllClick] = useState(true)
     const [activeClick, setActiveClick] = useState(false)
     const [completedClick, setCompletedClick] = useState(false)
-
-
-
-
     const [all, setAll] = useState([]);
     const [sortData, setSortData] = useState([]);
     const [first, setFirst] = useState(false);
     const [second, setSecond] = useState(false);
     const [third, setThird] = useState(false);
-
-
-
-
-
-
 
     const handleAllClick = () => {
         setShow('All');
@@ -102,7 +83,6 @@ const Problem1 = () => {
         setAllClick(false);
         setCompletedClick(false)
         const filterActive = arrayInfo?.filter((data) => data.status === 'Active' || data.status === 'active' || data.status === 'ACTIVE');
-        console.log("Active: ", filterActive);
         setActive(filterActive)
     }
 
@@ -172,11 +152,6 @@ const Problem1 = () => {
                         </thead>
                         <tbody>
 
-
-
-
-
-
                             {
                                 allClick &&
                                 <>
@@ -190,9 +165,6 @@ const Problem1 = () => {
                                     }
                                 </>
                             }
-
-
-
 
                             {
                                 activeClick &&
@@ -214,7 +186,6 @@ const Problem1 = () => {
                                 </>
                             }
 
-
                             {
                                 completedClick &&
                                 <>
@@ -234,20 +205,6 @@ const Problem1 = () => {
                                     }
                                 </>
                             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                         </tbody>
                     </table>

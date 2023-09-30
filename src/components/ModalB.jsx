@@ -16,15 +16,12 @@ const ModalB = () => {
     const [showModal, setShowModal] = useState(true);
     const handleClose = () => setShowModal(false);
 
-
-
     const [USContacts, setUSContacts] = useState([])
     useEffect(() => {
         fetch('https://contact.mediusware.com/api/country-contacts/United States/?page=1')
             .then(res => res.json())
             .then(data => setUSContacts(data.results))
     }, [])
-
 
     const [allContacts, setAllContacts] = useState([])
     const handleAllContactsClick = () => {
@@ -37,28 +34,12 @@ const ModalB = () => {
         setChecked(false);
     }
 
-
-
     const [modalShowC, setModalShowC] = useState(false);
     const [modalCData, setModalCData] = useState(null)
     const handleOpenModalC = (data) => {
         setModalCData(data);
         setModalShowC(true);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -69,7 +50,6 @@ const ModalB = () => {
     const handleScrollToBottom = (e) => {
         const modal = e.target;
         if (modal.scrollTop + modal.clientHeight >= modal.scrollHeight) {
-            console.log('Reached Bottom Modal B');
             loadMoreData();
         }
     };
@@ -77,7 +57,6 @@ const ModalB = () => {
     const loadMoreData = async () => {
         if (currentPage < 3) {
             try {
-                console.log('SAAAAKIIB');
                 setLoading(true);
                 setShowModal(true);
                 const response = await fetch(`https://contact.mediusware.com/api/country-contacts/United States/?page=${currentPage}`);
@@ -100,26 +79,12 @@ const ModalB = () => {
     }, [showModal]);
 
 
-
-
-    console.log("Modal API Modal B: ", modalAPIData);
-
-
-
-
-
-
-
-
-
-
     const [searchInput, setSearchInput] = useState('');
     const [searchInputAfterButtonClicked, setSearchInputAfterButtonClicked] = useState('');
     const handleGetSearchInput = (e) => {
         setSearchInput(e.target.value);
     }
     const handleSearch = (e) => {
-        console.log("Search Input Inside: ", searchInput);
         setSearchInputAfterButtonClicked(searchInput);
     }
     const handleKeyPress = (event) => {
@@ -127,33 +92,6 @@ const ModalB = () => {
             handleSearch();
         }
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -171,7 +109,6 @@ const ModalB = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-
                     <div>
                         <p><span className='fw-bold'>Country Name:</span> {modalCData?.country.name}</p>
                         <p><span className='fw-bold'>Country ID:</span> {modalCData?.country.id}</p>
@@ -191,40 +128,15 @@ const ModalB = () => {
                         }
 
                     </div>
-
                 </Modal.Body>
-
-
-
             </Modal>
         );
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     return (
         <div>
             <h1 className='text-center my-5'>Modal B</h1>
-
-
             <Modal scrollable={true} size="lg" show={showModal} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Modal B</Modal.Title>
@@ -245,7 +157,6 @@ const ModalB = () => {
                 </Modal.Header>
 
                 <Modal.Body onScroll={handleScrollToBottom}>
-
 
                     {
                         searchInputAfterButtonClicked?.length > 0
@@ -269,9 +180,6 @@ const ModalB = () => {
                         </>
                     }
 
-
-
-
                     {
                         searchInput?.length === 0
                         &&
@@ -288,11 +196,7 @@ const ModalB = () => {
                         </>
                     }
 
-
                     {loading && <div className='text-center text-success fs-4'>Loading...</div>}
-
-
-
 
                     <div className="d-flex justify-content-center mt-5 gap-3 mb-5">
 
@@ -304,16 +208,12 @@ const ModalB = () => {
                         <button className="custom-colorC" type="button" onClick={handleClose} >Close</button>
                     </div>
                 </Modal.Body>
-
-
             </Modal>
 
             <MyVerticallyCenteredModalC
                 show={modalShowC}
                 onHide={() => setModalShowC(false)}
             />
-
-
 
         </div>
     );

@@ -9,11 +9,6 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 
-
-
-
-
-
 const ModalA = () => {
 
 
@@ -24,21 +19,16 @@ const ModalA = () => {
             .then((data) => setCountriesData(data));
     }, []);
 
+
     const [showModal, setShowModal] = useState(true);
     const handleClose = () => setShowModal(false);
-
     useEffect(() => {
         setShowModal(true);
     }, []);
 
 
 
-
-
-
-
     const [allContacts, setAllContacts] = useState([])
-
     useEffect(() => {
         fetch('https://contact.mediusware.com/api/contacts/?page=1')
             .then(res => res.json())
@@ -67,11 +57,6 @@ const ModalA = () => {
             .then(data => setUSContacts(data.results))
     }
 
-
-
-
-
-
     const [checked, setChecked] = useState(false);
     const [filterData, setFilterData] = useState([])
     const handleCheckBoxClicked = () => {
@@ -81,74 +66,19 @@ const ModalA = () => {
             setFilterData(newFilter);
         }
         else {
-            // toast.error("Not Checked")
-            console.log("Not Checked");
+            console.log("Not Checked Yet");
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     const [modalShowC, setModalShowC] = useState(false);
     const [modalCData, setModalCData] = useState(null)
     const [modalCFlagData, setModalCFlagData] = useState(null)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     const handleOpenModalC = (data, newData) => {
-        console.log("Data: ", data);
-        console.log("New Data: ", newData);
         setModalCData(data);
         setModalShowC(true);
         const filterData = newData.find(item => item?.countryName === data?.country?.name)
-        console.log("Sakib: ", filterData);
         setModalCFlagData(filterData);
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -166,8 +96,6 @@ const ModalA = () => {
                         <p >Modal C</p>
                     </Modal.Title>
                 </Modal.Header>
-
-
                 <Modal.Body className='modal-bg-body'>
                     <div>
                         <p><span className='fw-bold'>Country Name:</span> {modalCData?.country.name}</p>
@@ -186,9 +114,7 @@ const ModalA = () => {
                             }
                         </div>
                     </div>
-
                 </Modal.Body>
-
             </Modal>
         );
     }
@@ -197,15 +123,12 @@ const ModalA = () => {
     const [modalAPIData, setModalAPIData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(false);
-
     const handleScrollToBottom = (e) => {
         const modal = e.target;
         if (modal.scrollTop + modal.clientHeight >= modal.scrollHeight) {
-            console.log('Reached bottom Modal A');
             loadMoreData();
         }
     };
-
 
     const loadMoreData = async () => {
         if (currentPage < 31) {
@@ -232,11 +155,9 @@ const ModalA = () => {
             loadMoreData();
         }
     }, [showModal]);
-
     const handleModalScroll = (e) => {
         const modal = e.target;
         if (modal.scrollTop + modal.clientHeight >= modal.scrollHeight) {
-            console.log('Reached bottom');
             loadMoreData();
         }
 
@@ -256,13 +177,6 @@ const ModalA = () => {
     });
 
 
-
-
-
-
-
-
-    // Create a Set to keep track of unique country names
     const uniqueCountryNames = new Set();
     const uniqueItems = filterData.filter((item) => {
         if (!uniqueCountryNames.has(item?.country?.name)) {
@@ -273,16 +187,6 @@ const ModalA = () => {
     });
 
 
-
-
-
-
-
-
-
-
-
-
     const modalContentRef = useRef(null);
     const scrollToBottom = () => {
         if (modalContentRef.current) {
@@ -291,23 +195,13 @@ const ModalA = () => {
     };
 
 
-
-
-
-
-
-
-
-
     const [searchInput, setSearchInput] = useState('');
     const [searchInputAfterButtonClicked, setSearchInputAfterButtonClicked] = useState('');
     const handleGetSearchInput = (e) => {
         setSearchInput(e.target.value);
     }
     const handleSearch = (e) => {
-        console.log("Search Input: ", searchInput);
         setSearchInputAfterButtonClicked(searchInput);
-        // setSearchInput('');
     }
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
@@ -317,23 +211,12 @@ const ModalA = () => {
 
 
 
-
-
-
-
-
-
-
     return (
         <div>
             <h1 className='text-center mt-5 mb-5'>Modal A</h1>
 
-
-
             <Modal scrollable={true} size="lg" show={showModal} onHide={() => setShowModal(false)}>
-
                 <Modal.Header closeButton>
-
                     <Modal.Title>Modal A</Modal.Title>
                     <Modal.Title className='mt-3 ms-2'>
                         <PiArrowFatLinesDownFill
@@ -347,7 +230,6 @@ const ModalA = () => {
                         >
                         </PiArrowFatLinesDownFill>
                     </Modal.Title>
-
                     <InputGroup className="mb-3 w-50 mx-auto">
                         <Form.Control
                             value={searchInput}
@@ -362,9 +244,7 @@ const ModalA = () => {
                             Search
                         </Button>
                     </InputGroup>
-
                 </Modal.Header>
-
 
                 <Modal.Body ref={modalContentRef} onScroll={handleScrollToBottom}>
 
@@ -384,7 +264,6 @@ const ModalA = () => {
 
                             :
                             <>
-
 
                                 {
                                     searchInputAfterButtonClicked?.length > 0
@@ -408,8 +287,6 @@ const ModalA = () => {
                                 }
 
 
-
-
                                 {
                                     searchInput?.length === 0
                                     &&
@@ -425,25 +302,18 @@ const ModalA = () => {
                                     </>
                                 }
 
-
-
                                 {loading && <div className='text-center text-primary fs-4'>Loading...</div>}
 
                             </>
                     }
 
-
                     <div className="d-flex justify-content-center mt-5 gap-3">
                         <button className="custom-colorA" type="button">All Contacts</button>
-
                         <Link to='/problem-2/modalB'>
                             <button className="custom-colorBNew" type="button" >US Contacts</button>
                         </Link>
-
                         <button className="custom-colorC" type="button" onClick={handleClose} >Close</button>
                     </div>
-
-
 
                     <div className="text-start  mt-4 mb-3">
                         <label className='border border-success border-2 rounded-1 px-3 py-1'>
@@ -458,17 +328,13 @@ const ModalA = () => {
                             /> <span className='fw-bold mt-1 ml-2'>Only Even</span>
                         </label>
                     </div>
-
                 </Modal.Body>
             </Modal>
-
 
             <MyVerticallyCenteredModalC
                 show={modalShowC}
                 onHide={() => setModalShowC(false)}
             />
-
-
         </div>
     );
 };
